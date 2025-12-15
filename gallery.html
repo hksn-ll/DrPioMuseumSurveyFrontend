@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo Ni Dr. Pio Valenzuela | Historical Museum in Valenzuela City</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #800000; 
+            --primary-light: #a83232;
+            --primary-lighter: #c44d4d;
+            --secondary: #ffffff;
+            --secondary-light: #f8f9fa;
+            --dark: #000000;
+            --light: #ffffff;
+            --gray: #94999e;
+            --light-gray: #e9ecef;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-glow: 0 0 20px rgba(128, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+            filter: brightness(0.9) contrast(1.1) saturate(1.2);
+            animation: slowPan 30s infinite alternate ease-in-out;
+        }
+
+        @keyframes slowPan {
+            0% {
+                transform: scale(1) translateX(0) translateY(0);
+            }
+            100% {
+                transform: scale(1.05) translateX(-10px) translateY(-10px);
+            }
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.7) 0%, 
+                rgba(128, 0, 0, 0.25) 50%, 
+                rgba(0, 0, 0, 0.5) 100%);
+            z-index: -2;
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.4);
+            animation: pulseOverlay 15s infinite alternate;
+        }
+
+        @keyframes pulseOverlay {
+            0% {
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .logo-area img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            border-radius: 12px;
+            border: 3px solid var(--secondary);
+            animation: rotateIn 1s ease-out;
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-90deg) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        .logo-area:hover img {
+            transform: rotate(5deg) scale(1.1);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 25px rgba(168, 50, 50, 0.6);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 10px 0;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-lighter));
+            transition: var(--transition);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+            text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Active link styling */
+        nav a.active {
+            color: var(--primary-light);
+            text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+        }
+
+        nav a.active:after {
+            width: 100%;
+            animation: pulseLine 2s infinite;
+        }
+
+        @keyframes pulseLine {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+            }
+            50% {
+                opacity: 0.7;
+                box-shadow: 0 0 20px rgba(168, 50, 50, 0.8);
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .carousel-section {
+            padding: 80px 0;
+            position: relative;
+            margin-top: 80px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .carousel-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--gray);
+            text-shadow: 
+                0 0 20px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(0, 0, 0, 0.6),
+                0 4px 8px rgba(0, 0, 0, 0.8);
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 
+                    0 0 20px rgba(0, 0, 0, 0.8),
+                    0 0 40px rgba(0, 0, 0, 0.6),
+                    0 4px 8px rgba(0, 0, 0, 0.8);
+            }
+            100% {
+                text-shadow: 
+                    0 0 25px rgba(128, 128, 128, 0.8),
+                    0 0 50px rgba(128, 128, 128, 0.6),
+                    0 6px 12px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        .carousel-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .carousel-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(128, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            background: rgba(0, 0, 0, 0.3);
+            animation: floatContainer 6s ease-in-out infinite;
+        }
+
+        @keyframes floatContainer {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+            height: 550px;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            opacity: 0.9;
+            transition: opacity 0.5s ease;
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9) contrast(1.05);
+            transition: filter 0.5s ease;
+            animation: imageReveal 1.2s ease-out;
+        }
+
+        @keyframes imageReveal {
+            from {
+                opacity: 0.7;
+                transform: scale(1.05);
+                filter: blur(5px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .carousel-slide:hover .carousel-image {
+            filter: brightness(1) contrast(1.1);
+            transform: scale(1.02);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(128, 0, 0, 0.4) 50%, 
+                transparent 100%);
+            color: var(--secondary);
+            padding: 30px;
+            padding-top: 60px;
+            backdrop-filter: blur(5px);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-slide.active .carousel-caption {
+            transform: translateY(0);
+            opacity: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .carousel-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(128, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-caption p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .carousel-nav-btn {
+            pointer-events: all;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--secondary);
+            font-size: 1.5rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            transform: scale(0.95);
+            animation: pulseArrow 2s infinite;
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% { 
+                box-shadow: 
+                    0 10px 25px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 10px 25px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 0 20px rgba(128, 0, 0, 0.4);
+            }
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1) rotate(5deg);
+            opacity: 1;
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 15px 35px rgba(128, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-dots-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 12px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .carousel-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: bounceIn 0.5s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .carousel-dot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: transparent;
+            border-color: var(--primary);
+            transform: scale(1.2);
+            animation: dotPulse 1.5s infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(168, 50, 50, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 5px rgba(168, 50, 50, 0);
+            }
+        }
+
+        .carousel-dot.active::before {
+            transform: scale(0.7);
+        }
+
+        .carousel-dot:hover {
+            transform: scale(1.3);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+        }
+
+        .carousel-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 25px;
+            border-radius: 2px;
+            overflow: hidden;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .carousel-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            width: 0%;
+            transition: width 0.5s linear;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: auto;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particle {
+            position: fixed;
+            background: rgba(128, 0, 0, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @media (max-width: 1024px) {
+            .carousel-container {
+                max-width: 90%;
+            }
+            
+            .carousel-track {
+                height: 500px;
+            }
+            
+            .carousel-nav-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+            
+            .carousel-header h2 {
+                font-size: 2.8rem;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-area {
+                font-size: 1.2rem;
+            }
+            
+            .logo-area img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            nav a {
+                font-size: 0.95rem;
+            }
+            
+            .carousel-section {
+                padding: 60px 0;
+                margin-top: 70px;
+            }
+            
+            .carousel-track {
+                height: 450px;
+            }
+            
+            .carousel-caption {
+                padding: 20px;
+                padding-top: 50px;
+            }
+            
+            .carousel-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 0.95rem;
+            }
+            
+            .carousel-nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                padding: 0 10px;
+            }
+            
+            .carousel-nav {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px 0;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .carousel-track {
+                height: 400px;
+            }
+            
+            .carousel-caption {
+                padding: 15px;
+                padding-top: 40px;
+            }
+            
+            .carousel-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.3rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+            
+            .carousel-nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<video autoplay muted loop playsinline class="video-background">
+    <source src="landing.mp4" type="video/mp4">
+    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600" alt="Museum background">
+</video>
+
+<div class="video-overlay"></div>
+
+<div class="content-wrapper">
+    <header id="header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="Museum Logo">
+                Museo Ni Dr. Pio Valenzuela
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="news.html">News & Events</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="carousel" class="carousel-section">
+        <div class="container">
+            <div class="carousel-header">
+                <h2>Museum Exhibits & Features</h2>
+                <p>Explore the rich history and artifacts at Museo Ni Dr. Pio Valenzuela</p>
+            </div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+
+                    <div class="carousel-slide active">
+                        <img src="gallery/1.png" alt="Old Clinic Diorama" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Old Clinic Diorama</h3>
+                            <p>A reconstructed scene of Dr. Valenzuela's medical practice with period instruments, showcasing his dual role as a physician and revolutionary.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/2.png" alt="Painting of Katipunan Discussion" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Painting of Katipunan Discussion</h3>
+                            <p>An artwork depicting a significant meeting related to the Katipunan movement, capturing the intensity of revolutionary planning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/3.png" alt="Dr. Valenzuela's Office" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Dr. Valenzuela's Office</h3>
+                            <p>A preserved workspace showing the doctor's desk, tools, and personal items, offering insight into his daily life and work.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/4.png" alt="Ancestral House Model" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Ancestral House Model</h3>
+                            <p>A scale model of Dr. Pio Valenzuela's family home, displaying traditional Filipino architecture and family heritage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/5.png" alt="Lecture & Reading Room" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Lecture & Reading Room</h3>
+                            <p>A multifunction area used for museum talks, exhibits, and research, serving as an educational hub for visitors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/6.png" alt="Life Timeline of Dr. Valenzuela" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Life Timeline of Dr. Valenzuela</h3>
+                            <p>A chronological wall display highlighting key events in his life and contributions to Philippine history and medicine.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/7.png" alt="Museum Lobby & Living Area" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Museum Lobby & Living Area</h3>
+                            <p>A welcoming space recreating the ambiance of a traditional Filipino home, blending historical authenticity with visitor comfort.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/8.png" alt="Garden Gazebo" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Garden Gazebo</h3>
+                            <p>An outdoor feature offering a serene spot within the museum grounds, perfect for reflection and appreciation of history.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="gallery/9.png" alt="Katipunan Printing Press Exhibit" class="carousel-image">
+                        <div class="carousel-caption">
+                            <h3>Katipunan Printing Press Exhibit</h3>
+                            <p>A historic press used to reproduce Katipunan documents and publications, showcasing revolutionary communication methods.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-nav-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="carousel-progress">
+                <div class="carousel-progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="carousel-dots-container" id="carouselDots">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>All rights reserved by Museo Ni Dr. Pio Valenzuela</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+
+        const carouselTrack = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carouselDots = document.getElementById('carouselDots');
+        const progressBar = document.getElementById('progressBar');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let carouselInterval;
+        let progressInterval;
+        
+    
+        function initCarousel() {
+
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                carouselDots.appendChild(dot);
+                
+    
+                dot.style.animationDelay = `${i * 0.1}s`;
+                
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetAutoAdvance();
+               
+                    dot.style.animation = 'bounceIn 0.3s ease-out';
+                    setTimeout(() => {
+                        dot.style.animation = '';
+                    }, 300);
+                });
+            }
+            
+            updateCarousel();
+            startAutoAdvance();
+            startProgressBar();
+            
+
+            slides.forEach((slide, index) => {
+                slide.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+        
+
+        function updateCarousel() {
+   
+            carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            progressBar.style.width = '0%';
+            startProgressBar();
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            updateCarousel();
+        }
+        
+
+        function nextSlide() {
+            currentSlide++;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateCarousel();
+        }
+        
+
+        function prevSlide() {
+            currentSlide--;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            updateCarousel();
+        }
+        
+        // Auto-advance functionality
+        function startAutoAdvance() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function resetAutoAdvance() {
+            clearInterval(carouselInterval);
+            startAutoAdvance();
+        }
+        
+        // Progress bar functionality
+        function startProgressBar() {
+            clearInterval(progressInterval);
+            let width = 0;
+            const duration = 5000; // 5 seconds
+            const increment = 100 / (duration / 50); // Update every 50ms
+            
+            progressInterval = setInterval(() => {
+                width += increment;
+                progressBar.style.width = width + '%';
+                
+                if (width >= 100) {
+                    clearInterval(progressInterval);
+                }
+            }, 50);
+        }
+        
+        // Event listeners for buttons
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoAdvance();
+            // Add button animation
+            nextBtn.style.animation = 'rotateIn 0.5s ease-out';
+            setTimeout(() => {
+                nextBtn.style.animation = '';
+            }, 500);
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoAdvance();
+
+            prevBtn.style.animation = 'rotateIn 0.5s ease-out';
+            setTimeout(() => {
+                prevBtn.style.animation = '';
+            }, 500);
+        });
+        
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+            clearInterval(progressInterval);
+            progressBar.style.width = progressBar.style.width; 
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoAdvance();
+        });
+        
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetAutoAdvance();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+                resetAutoAdvance();
+            } else if (e.key === ' ') {
+            
+                if (carouselInterval) {
+                    clearInterval(carouselInterval);
+                    carouselInterval = null;
+                    clearInterval(progressInterval);
+                } else {
+                    startAutoAdvance();
+                }
+            }
+        });
+        
+ 
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(carouselInterval);
+            clearInterval(progressInterval);
+        });
+        
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                  
+                    nextSlide();
+                } else {
+                 
+                    prevSlide();
+                }
+            }
+            resetAutoAdvance();
+        }
+        
+        initCarousel();
+        
+
+        const video = document.querySelector('.video-background');
+        if (video) {
+            video.play().catch(function(error) {
+                console.log("Video autoplay prevented:", error);
+            });
+        }
+        
+        createParticles();
+        
+
+        const navLinks = document.querySelectorAll('nav a');
+        
+        function updateActiveNav() {
+            const scrollPos = window.scrollY;
+            
+    
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+    
+            if (scrollPos < 100) {
+                document.querySelector('a[href="gallery.html"]').classList.add('active');
+            }
+            
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const section = document.querySelector(href);
+                    if (section) {
+                        const sectionTop = section.offsetTop - 100;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+                        
+                        if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                            link.classList.add('active');
+                        }
+                    }
+                }
+            });
+        }
+        
+
+        window.addEventListener('scroll', updateActiveNav);
+        
+
+        updateActiveNav();
+    });
+    
+
+
+        const particlesContainer = document.createElement('div');
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.pointerEvents = 'none';
+        particlesContainer.style.zIndex = '-1';
+        document.body.appendChild(particlesContainer);
+        
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 100 + 50;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const duration = Math.random() * 20 + 20;
+            const delay = Math.random() * 10;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.opacity = Math.random() * 0.3 + 0.1;
+            particle.style.animation = `float ${duration}s infinite ${delay}s ease-in-out`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(20px, -20px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(0, -40px) rotate(180deg);
+                }
+                75% {
+                    transform: translate(-20px, -20px) rotate(270deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    
+    </script>
+
+</body>
+</html>

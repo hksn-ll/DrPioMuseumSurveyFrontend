@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo Ni Dr. Pio Valenzuela | Historical Museum in Valenzuela City</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+:root {
+    --primary: #800000; 
+    --primary-light: #a83232;
+    --primary-lighter: #c44d4d;
+    --secondary: #ffffff;
+    --secondary-light: #f8f9fa;
+    --dark: #000000;
+    --light: #ffffff;
+    --gray: #94999e;
+    --light-gray: #e9ecef;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.3);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-glow: 0 0 20px rgba(128, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--light);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+
+    filter: brightness(0.9) contrast(1.1) saturate(1.2);
+    animation: slowPan 30s infinite alternate ease-in-out;
+}
+
+@keyframes slowPan {
+    0% {
+        transform: scale(1) translateX(0) translateY(0);
+    }
+    100% {
+        transform: scale(1.05) translateX(-10px) translateY(-10px);
+    }
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(128, 0, 0, 0.25) 50%, 
+        rgba(0, 0, 0, 0.5) 100%);
+    z-index: -2;
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.4);
+    animation: pulseOverlay 15s infinite alternate;
+}
+
+@keyframes pulseOverlay {
+    0% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header {
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-area img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    border-radius: 12px;
+    border: 3px solid var(--secondary);
+    animation: rotateIn 1s ease-out;
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+.logo-area:hover img {
+    transform: rotate(5deg) scale(1.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 25px rgba(168, 50, 50, 0.6);
+}
+
+nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+nav a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+    transition: var(--transition);
+    padding: 10px 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+nav a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-lighter));
+    transition: var(--transition);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+}
+
+nav a:hover {
+    color: var(--primary-light);
+    text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+}
+
+nav a:hover:after {
+    width: 100%;
+}
+
+
+nav a.active {
+    color: var(--primary-light);
+    text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+}
+
+nav a.active:after {
+    width: 100%;
+    animation: pulseLine 2s infinite;
+}
+
+@keyframes pulseLine {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 20px rgba(168, 50, 50, 0.8);
+    }
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+
+.about-section {
+    padding: 50px 0 80px;
+    color: var(--secondary);
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 80px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.about-header h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--gray);
+    text-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.8);
+    animation: titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            0 0 20px rgba(0, 0, 0, 0.8),
+            0 0 40px rgba(0, 0, 0, 0.6),
+            0 4px 8px rgba(0, 0, 0, 0.8);
+    }
+    100% {
+        text-shadow: 
+            0 0 25px rgba(128, 128, 128, 0.8),
+            0 0 50px rgba(128, 128, 128, 0.6),
+            0 6px 12px rgba(0, 0, 0, 0.9);
+    }
+}
+
+.about-header p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1.4s ease-out;
+    text-align: justify;
+    text-indent: 2em;
+    text-align-last: left;
+}
+
+
+.section-with-image {
+    display: flex;
+    align-items: stretch;
+    gap: 50px;
+    margin-bottom: 70px;
+    min-height: 350px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 1s ease-out forwards;
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-with-image:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.section-with-image:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.image-wrapper {
+    flex: 0 0 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border: 3px solid rgba(128, 0, 0, 0.3);
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderPulse 4s infinite alternate;
+}
+
+@keyframes borderPulse {
+    0% {
+        border-color: rgba(128, 0, 0, 0.3);
+        transform: scale(1);
+    }
+    100% {
+        border-color: rgba(168, 50, 50, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+.side-image {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(128, 0, 0, 0.4);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+.side-image:hover {
+    transform: scale(1.05) rotate(1deg);
+    border-color: var(--primary-light);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(168, 50, 50, 0.7),
+        var(--border-glow);
+}
+
+.content-wrapper-card {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 25px;
+    padding: 50px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        var(--shadow-heavy),
+        inset 0 0 100px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--primary-lighter));
+    animation: shimmer 3s infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.about-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(128, 0, 0, 0.5),
+        inset 0 0 100px rgba(0, 0, 0, 0.3);
+    border-color: rgba(168, 50, 50, 0.4);
+}
+
+
+.card-title {
+    font-size: 3rem;
+    color: var(--gray); 
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.25);
+    padding-bottom: 20px;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        0 6px 12px rgba(0, 0, 0, 0.4);
+    position: relative;
+    animation: titleFloat 6s infinite ease-in-out;
+}
+
+.card-title::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.1);
+    text-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    animation: titleGlowBack 4s infinite alternate;
+}
+
+@keyframes titleGlowBack {
+    0% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0.8;
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gray), transparent);
+    animation: lineFlow 3s infinite linear;
+}
+
+@keyframes lineFlow {
+    0% {
+        left: 25%;
+        width: 50%;
+    }
+    50% {
+        left: 0;
+        width: 100%;
+    }
+    100% {
+        left: 25%;
+        width: 50%;
+    }
+}
+
+
+.about-card p {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.9;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-indent: 2em; 
+    text-align-last: left;
+    hyphens: auto;
+    animation: fadeIn 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+
+.about-card p:first-of-type {
+    text-indent: 2em; 
+}
+
+.about-card p:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.about-card p:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out;
+}
+
+
+.particle {
+    position: fixed;
+    background: rgba(128, 0, 0, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+@media (max-width: 1200px) {
+    .section-with-image {
+        gap: 40px;
+    }
+    
+    .image-wrapper {
+        flex: 0 0 350px;
+    }
+    
+    .about-card {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .section-with-image {
+        gap: 30px;
+    }
+    
+    .image-wrapper {
+        flex: 0 0 300px;
+    }
+    
+    .side-image {
+        min-height: 280px;
+    }
+    
+    .about-card {
+        min-height: 280px;
+        padding: 35px;
+    }
+    
+    .card-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-area {
+        font-size: 1.2rem;
+    }
+    
+    .logo-area img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    nav ul {
+        gap: 20px;
+    }
+    
+    nav a {
+        font-size: 0.95rem;
+    }
+    
+    .about-section {
+        padding: 120px 0 60px;
+    }
+    
+    .about-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .about-header p {
+        font-size: 1.1rem;
+        text-indent: 1.5em; 
+    }
+    
+    .about-card {
+        padding: 30px;
+        min-height: auto;
+    }
+    
+    .card-title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+    
+  
+    .section-with-image {
+        flex-direction: column;
+        gap: 30px;
+        min-height: auto;
+    }
+    
+    .image-wrapper {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 300px;
+    }
+    
+    .image-wrapper::before {
+        display: none;
+    }
+    
+    .side-image {
+        width: 100%;
+        max-width: 600px;
+        height: 100%;
+        min-height: auto;
+        margin: 0 auto;
+    }
+    
+    .content-wrapper-card {
+        width: 100%;
+    }
+    
+    .about-card p {
+        text-indent: 1.5em; 
+        hyphens: none;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px 0;
+    }
+    
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .about-header h2 {
+        font-size: 2rem;
+    }
+    
+    .about-header p {
+        text-indent: 1em; 
+    }
+    
+    .image-wrapper {
+        height: 250px;
+    }
+    
+    .about-card {
+        padding: 25px;
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+    }
+    
+    .about-card p {
+        text-indent: 1em; 
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+}
+    </style>
+
+</head>
+<body>
+
+<!-- FULLSCREEN VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline class="video-background">
+    <source src="about.mp4" type="video/mp4">
+    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600" alt="Museum background">
+</video>
+
+<div class="video-overlay"></div>
+
+<div class="content-wrapper">
+    <!-- HEADER WITH LOGO + NAV -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="Museum Logo">
+                Museo Ni Dr. Pio Valenzuela
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="news.html">News & Events</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ABOUT HISTORY SECTION -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-header">
+            </div>
+            
+            <!-- About the Museum Section with Image on Left -->
+            <div class="section-with-image">
+                <div class="image-wrapper">
+                    <img src="pio2.jpg" alt="Museum building exterior" class="side-image">
+                </div>
+                <div class="content-wrapper-card">
+                    <div class="about-card">
+                        <h3 class="card-title" data-text="About the Museum">About the Museum</h3>
+                        <p>The Museo Ni Dr. Pio Valenzuela in Valenzuela City was established to honor Dr. Pio Valenzuela, a significant figure in the Philippine Revolution. The museum preserves artifacts, documents, and exhibits that highlight his contributions to the country's fight for independence.</p>
+                        <p>Through its interactive and educational displays, the museum helps visitors understand the struggles of the revolutionary era. It serves as a bridge between past and present, ensuring that the bravery and sacrifices of Philippine heroes remain remembered and appreciated.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dr. Pio Valenzuela Section with Image on Right -->
+            <div class="section-with-image">
+                <div class="content-wrapper-card">
+                    <div class="about-card">
+                        <h3 class="card-title" data-text="Dr. Pio Valenzuela">Dr. Pio Valenzuela</h3>
+                        <p>Dr. Pio Valenzuela (1869–1956) was a Filipino physician and key member of the Katipunan. Born in Polo (now Valenzuela City), he studied medicine at the University of Santo Tomas and became a trusted adviser and physician to Andres Bonifacio during the early stages of the revolution.</p>
+                        <p>He continued serving the country through various roles, including meeting José Rizal in Dapitan in 1896, leading the Katipunan's Supreme Council, and becoming Manila's first Health Officer. Later, he served as Governor of Bulacan, leaving behind a legacy honored today through the museum dedicated to his life and service.</p>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="pio1.jpg" alt="Portrait of Dr. Pio Valenzuela" class="side-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>All rights reserved by Museo Ni Dr. Pio Valenzuela</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.querySelector('.video-background');
+        if (video) {
+            video.play().catch(function(error) {
+                console.log("Video autoplay prevented:", error);
+            });
+        }
+        
+        createParticles();
+        s
+        const aboutCards = document.querySelectorAll('.about-card');
+        aboutCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+            
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(128, 0, 0, 0.5), inset 0 0 100px rgba(0, 0, 0, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'var(--shadow-heavy), inset 0 0 100px rgba(0, 0, 0, 0.2)';
+            });
+        });
+        
+        const images = document.querySelectorAll('.side-image');
+        images.forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotate(1deg)';
+                this.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(168, 50, 50, 0.7), var(--border-glow)';
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(128, 0, 0, 0.4)';
+            });
+        });
+        
+
+        const navLinks = document.querySelectorAll('nav a');
+        const currentPage = window.location.pathname.split('/').pop() || 'about.html';
+        
+    
+        function setActiveNavLink() {
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+              
+                link.classList.remove('active');
+                
+
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+  
+        setActiveNavLink();
+        
+     
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.color = 'var(--primary-light)';
+                }
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.color = 'var(--secondary)';
+                }
+            });
+        });
+        
+       
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+            
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    
+            
+                    navLinks.forEach(l => l.classList.remove('active'));
+         
+                    this.classList.add('active');
+                    
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+            
+                }
+            });
+        });
+        
+     
+        if (currentPage === 'about.html') {
+       
+            window.addEventListener('scroll', function() {
+                const scrollPos = window.scrollY;
+                const aboutSection = document.getElementById('about');
+                
+               
+                navLinks[0].classList.add('active');
+                
+         
+                navLinks.forEach((link, index) => {
+                    if (index !== 0) { 
+                        const href = link.getAttribute('href');
+                        if (href && href.startsWith('#')) {
+                            const section = document.querySelector(href);
+                            if (section) {
+                                const sectionTop = section.offsetTop - 100;
+                                const sectionBottom = sectionTop + section.offsetHeight;
+                                
+                                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+        
+  
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+     
+        document.querySelectorAll('.section-with-image').forEach(section => {
+            observer.observe(section);
+        });
+    });
+    
+   
+    function createParticles() {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.pointerEvents = 'none';
+        particlesContainer.style.zIndex = '-1';
+        document.body.appendChild(particlesContainer);
+        
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 100 + 50;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const duration = Math.random() * 20 + 20;
+            const delay = Math.random() * 10;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.opacity = Math.random() * 0.3 + 0.1;
+            particle.style.animation = `float ${duration}s infinite ${delay}s ease-in-out`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+      
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(20px, -20px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(0, -40px) rotate(180deg);
+                }
+                75% {
+                    transform: translate(-20px, -20px) rotate(270deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo Ni Dr. Pio Valenzuela | Historical Museum in Valenzuela City</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+:root {
+    --primary: #800000;
+    --primary-light: #a83232;
+    --primary-lighter: #c44d4d;
+    --secondary: #ffffff;
+    --secondary-light: #f8f9fa;
+    --dark: #000000;
+    --light: #ffffff;
+    --gray: #94999e;
+    --light-gray: #e9ecef;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--light);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+    filter: brightness(0.9) contrast(1.1) saturate(1.2);
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(128, 0, 0, 0.25) 50%, 
+        rgba(0, 0, 0, 0.5) 100%);
+    z-index: -2;
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.4);
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-area img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    border-radius: 12px;
+    border: 3px solid var(--secondary);
+    animation: rotateIn 1s ease-out;
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+.logo-area:hover img {
+    transform: rotate(5deg) scale(1.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 25px rgba(168, 50, 50, 0.6);
+}
+
+nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+nav a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+    transition: var(--transition);
+    padding: 10px 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+nav a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-lighter));
+    transition: var(--transition);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+}
+
+nav a:hover {
+    color: var(--primary-light);
+    text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+}
+
+nav a:hover:after {
+    width: 100%;
+}
+
+nav a.active {
+    color: var(--primary-light);
+    text-shadow: 0 0 15px rgba(168, 50, 50, 0.7);
+}
+
+nav a.active:after {
+    width: 100%;
+    animation: pulseLine 2s infinite;
+}
+
+@keyframes pulseLine {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(168, 50, 50, 0.5);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 20px rgba(168, 50, 50, 0.8);
+    }
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+nav a[href="#feedback"].active {
+    color: var(--primary-light);
+}
+
+nav a[href="#feedback"].active:after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+.feedback-section {
+    padding: 140px 0 100px;
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+}
+
+.feedback-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(3px);
+    border-radius: 24px;
+    padding: 60px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 30px rgba(128, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: fadeInUp 0.8s ease-out;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.feedback-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(128, 0, 0, 0.2), 
+        rgba(255, 255, 255, 0.1), 
+        rgba(128, 0, 0, 0.2), 
+        transparent);
+    border-radius: 26px;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+}
+
+.feedback-header {
+    text-align: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.feedback-header h2 {
+    font-size: 2.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 
+                 -1px -1px 0 rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.feedback-header h2:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    animation: linePulse 2s infinite;
+}
+
+.feedback-header p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 30px auto 0;
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.qr-section {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+    position: relative;
+}
+
+.qr-code {
+    width: 250px;
+    height: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(128, 0, 0, 0.15);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.qr-code::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(128, 0, 0, 0.05) 50%, 
+        transparent 70%);
+    animation: shimmer 3s infinite;
+}
+
+.qr-code:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(128, 0, 0, 0.2);
+}
+
+.qr-code img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.qr-title {
+    color: var(--secondary);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+}
+
+.qr-instructions {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    text-align: center;
+    width: 100%;
+}
+
+.description-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 35px;
+    margin-top: 40px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 20px rgba(128, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.description-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 25px rgba(128, 0, 0, 0.15);
+}
+
+.description-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: left 0.7s ease;
+}
+
+.description-card:hover::before {
+    left: 100%;
+}
+
+.description-card h4 {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.description-card p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: auto;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(40px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes borderGlow {
+    0% {
+        opacity: 0.5;
+        background-position: 0% 50%;
+    }
+    50% {
+        opacity: 0.8;
+        background-position: 100% 50%;
+    }
+    100% {
+        opacity: 0.5;
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes linePulse {
+    0%, 100% {
+        width: 80px;
+        opacity: 1;
+    }
+    50% {
+        width: 100px;
+        opacity: 0.7;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-area {
+        font-size: 1.2rem;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+    }
+    
+    .feedback-section {
+        padding: 120px 20px 80px;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .feedback-container {
+        padding: 40px 25px;
+        background: rgba(255, 255, 255, 0.06);
+    }
+    
+    .feedback-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .feedback-header p {
+        font-size: 1.1rem;
+    }
+    
+    .qr-code {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .qr-title {
+        font-size: 1.5rem;
+    }
+    
+    .qr-instructions {
+        font-size: 1rem;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mobile-menu-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        transition: var(--transition);
+        padding: 30px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    nav li {
+        margin: 5px 0;
+    }
+    
+    nav a {
+        display: block;
+        padding: 18px 20px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        padding-left: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    nav a.active {
+        background: rgba(128, 0, 0, 0.2);
+        color: var(--primary-light);
+        box-shadow: 0 4px 10px rgba(128, 0, 0, 0.3);
+    }
+}
+    </style>
+
+</head>
+<body>
+
+<video autoplay muted loop playsinline class="video-background">
+    <source src="feedback.mp4" type="video/mp4">
+    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600" alt="Museum background">
+</video>
+
+<div class="video-overlay"></div>
+
+<div class="content-wrapper">
+    <header id="header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="Museum Logo">
+                Museo Ni Dr. Pio Valenzuela
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="news.html">News & Events</a></li>
+                    <li><a href="feedback.html" class="active">Feedback</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="feedback" class="feedback-section">
+        <div class="container">
+            <div class="feedback-container">
+                <div class="feedback-header">
+                    <h2>Share Your Feedback</h2>
+                </div>
+                
+                <div class="qr-section">
+                    <div class="qr-code-container">
+                        <div class="qr-code">
+                            <img src="qr.png" alt="Feedback QR Code">
+                        </div>
+                        <h3 class="qr-title">Scan to Provide Feedback</h3>
+                        <p class="qr-instructions">Use your smartphone camera to scan this QR code</p>
+                        <p class="qr-instructions">It will direct you to our digital feedback form</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>All rights reserved by Museo Ni Dr. Pio Valenzuela</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.querySelector('.video-background');
+        if (video) {
+            video.play().catch(function(error) {
+                console.log("Video autoplay prevented:", error);
+            });
+        }
+        
+        const feedbackLink = document.querySelector('nav a[href="#feedback"]');
+        if (feedbackLink) {
+            feedbackLink.classList.add('active');
+        }
+    });
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (window.innerWidth <= 768) {
+                mainNav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+        const sections = document.querySelectorAll('section');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+</script>
+
+</body>
+</html>
